@@ -1,7 +1,6 @@
 # Reqres.in API Tests
 
-This repository contains a set of Java tests using the [RestAssured](https://rest-assured.io) library for various endpoints of the [Reqres.in](https://reqres.in/) API.<br><p>
-The tests cover registration scenarios as well as user retrieval scenarios.</p>
+This repository contains a set of Java tests using the [RestAssured](https://rest-assured.io) library for various endpoints of the [Reqres.in](https://reqres.in/) API. The tests cover registration scenarios as well as user retrieval scenarios.
 
 ---
 
