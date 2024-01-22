@@ -1,0 +1,25 @@
+HELP.md
+build/
+**/build/
+!.mvn/wrapper/maven-wrapper.jar
+!gradle/wrapper
+!**/src/main/**
+!**/src/test/**
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Allure ###
+.allure
+config.json
+
+### Gradle ###
+.gradle
+gradlew
+gradlew.bat
+
+### Logs ###
+*.log
