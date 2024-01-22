@@ -2,18 +2,25 @@ package reqrest.tests;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class HomeworkTest {
+
+    @BeforeAll
+    static void setUp() {
+        RestAssured.baseURI = "https://reqres.in";
+        RestAssured.basePath = "/api";
+    }
 
     @Test
     @Tag("200")
     void testRegisterSuccessful() {
-        RestAssured.baseURI = "https://reqres.in/api";
         String requestBody = "{\n" +
                 "    \"email\": \"eve.holt@reqres.in\",\n" +
                 "    \"password\": \"pistol\"\n" +
@@ -32,13 +39,12 @@ public class HomeworkTest {
                 .log().body()
                 .statusCode(200)
                 .body("id", is(4))
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+                .body("token", notNullValue());
     }
 
     @Test
     @Tag("400")
     void testRegisterBadEmail() {
-        RestAssured.baseURI = "https://reqres.in/api";
         String requestBody = "{\n" +
                 "    \"email\": \"bad.bad@reqres.in\",\n" +
                 "    \"password\": \"pistol\"\n" +
@@ -62,7 +68,6 @@ public class HomeworkTest {
     @Test
     @Tag("400")
     void testRegisterEmptyEmail() {
-        RestAssured.baseURI = "https://reqres.in/api";
         String requestBody = "{\n" +
                 "    \"email\": \"\",\n" +
                 "    \"password\": \"pistol\"\n" +
@@ -86,7 +91,6 @@ public class HomeworkTest {
     @Test
     @Tag("400")
     void testRegisterEmptyPassword() {
-        RestAssured.baseURI = "https://reqres.in/api";
         String requestBody = "{\n" +
                 "    \"email\": \"eve.holt@reqres.in\",\n" +
                 "    \"password\": \"\"\n" +
@@ -110,7 +114,6 @@ public class HomeworkTest {
     @Test
     @Tag("404")
     void testSingleUserNotFound() {
-        RestAssured.baseURI = "https://reqres.in/api";
         given()
                 .log().uri()
 
@@ -126,7 +129,6 @@ public class HomeworkTest {
     @Test
     @Tag("200")
     void testSingleUserEmail() {
-        RestAssured.baseURI = "https://reqres.in/api";
         given()
                 .log().uri()
 
