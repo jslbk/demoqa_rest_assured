@@ -21,10 +21,11 @@ public class HomeworkTest {
     @Test
     @Tag("200")
     void testRegisterSuccessful() {
-        String requestBody = "{\n" +
-                "    \"email\": \"eve.holt@reqres.in\",\n" +
-                "    \"password\": \"pistol\"\n" +
-                "}";
+        String requestBody = """
+                {
+                    "email": "eve.holt@reqres.in",
+                    "password": "pistol"
+                }""";
 
         given()
                 .body(requestBody)
@@ -45,10 +46,11 @@ public class HomeworkTest {
     @Test
     @Tag("400")
     void testRegisterBadEmail() {
-        String requestBody = "{\n" +
-                "    \"email\": \"bad.bad@reqres.in\",\n" +
-                "    \"password\": \"pistol\"\n" +
-                "}";
+        String requestBody = """
+                {
+                    "email": "bad.bad@reqres.in",
+                    "password": "pistol"
+                }""";
 
         given()
                 .body(requestBody)
@@ -68,10 +70,11 @@ public class HomeworkTest {
     @Test
     @Tag("400")
     void testRegisterEmptyEmail() {
-        String requestBody = "{\n" +
-                "    \"email\": \"\",\n" +
-                "    \"password\": \"pistol\"\n" +
-                "}";
+        String requestBody = """
+                {
+                    "email": "",
+                    "password": "pistol"
+                }""";
 
         given()
                 .body(requestBody)
@@ -91,10 +94,11 @@ public class HomeworkTest {
     @Test
     @Tag("400")
     void testRegisterEmptyPassword() {
-        String requestBody = "{\n" +
-                "    \"email\": \"eve.holt@reqres.in\",\n" +
-                "    \"password\": \"\"\n" +
-                "}";
+        String requestBody = """
+                {
+                    "email": "eve.holt@reqres.in",
+                    "password": ""
+                }""";
 
         given()
                 .body(requestBody)
