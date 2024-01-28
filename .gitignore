@@ -23,3 +23,6 @@ gradlew.bat
 
 ### Logs ###
 *.log
+
+### Resources ###
+*.ftl
