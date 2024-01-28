@@ -15,6 +15,7 @@ build/
 ### Allure ###
 .allure
 config.json
+**/tpl/
 
 ### Gradle ###
 .gradle
