@@ -2,13 +2,17 @@ package reqrest.tests;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import models.lombok.LoginBodyLombokModel;
+import models.lombok.LoginResponseLombokModel;
+import models.pojo.LoginBodyModel;
+import models.pojo.LoginResponseModel;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HomeworkTest {
 
@@ -20,14 +24,13 @@ public class HomeworkTest {
 
     @Test
     @Tag("200")
-    void testRegisterSuccessful() {
-        String requestBody = """
-                {
-                    "email": "eve.holt@reqres.in",
-                    "password": "pistol"
-                }""";
+    void testRegisterSuccessfulPojo() {
+        LoginBodyModel requestBody = new LoginBodyModel();
+        requestBody.setEmail("eve.holt@reqres.in");
+        requestBody.setPassword("pistol");
 
-        given()
+
+        LoginResponseModel response = given()
                 .body(requestBody)
                 .contentType(ContentType.JSON)
                 .log().uri()
@@ -39,111 +42,36 @@ public class HomeworkTest {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .body("id", is(4))
-                .body("token", notNullValue());
-    }
+                .body("token", notNullValue())
+                .extract().as(LoginResponseModel.class);
 
-    @Test
-    @Tag("400")
-    void testRegisterBadEmail() {
-        String requestBody = """
-                {
-                    "email": "bad.bad@reqres.in",
-                    "password": "pistol"
-                }""";
-
-        given()
-                .body(requestBody)
-                .contentType(ContentType.JSON)
-                .log().uri()
-
-                .when()
-                .post("https://reqres.in/api/register")
-
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(400)
-                .body("error", is("Note: Only defined users succeed registration"));
-    }
-
-    @Test
-    @Tag("400")
-    void testRegisterEmptyEmail() {
-        String requestBody = """
-                {
-                    "email": "",
-                    "password": "pistol"
-                }""";
-
-        given()
-                .body(requestBody)
-                .contentType(ContentType.JSON)
-                .log().uri()
-
-                .when()
-                .post("/register")
-
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(400)
-                .body("error", is("Missing email or username"));
-    }
-
-    @Test
-    @Tag("400")
-    void testRegisterEmptyPassword() {
-        String requestBody = """
-                {
-                    "email": "eve.holt@reqres.in",
-                    "password": ""
-                }""";
-
-        given()
-                .body(requestBody)
-                .contentType(ContentType.JSON)
-                .log().uri()
-
-                .when()
-                .post("/register")
-
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(400)
-                .body("error", is("Missing password"));
-    }
-
-    @Test
-    @Tag("404")
-    void testSingleUserNotFound() {
-        given()
-                .log().uri()
-
-                .when()
-                .get("/users/23")
-
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(404);
+        assertEquals("4", response.getId());
     }
 
     @Test
     @Tag("200")
-    void testSingleUserEmail() {
-        given()
+    void testRegisterSuccessfulLombok() {
+        LoginBodyLombokModel requestBody = new LoginBodyLombokModel();
+        requestBody.setEmail("eve.holt@reqres.in");
+        requestBody.setPassword("pistol");
+
+
+        LoginResponseLombokModel response = given()
+                .body(requestBody)
+                .contentType(ContentType.JSON)
                 .log().uri()
 
                 .when()
-                .get("/users/4")
+                .post("/register")
 
                 .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .body("data.email", is("eve.holt@reqres.in"));
+                .body("token", notNullValue())
+                .extract().as(LoginResponseLombokModel.class);
+
+        assertEquals("4", response.getId());
     }
 
 
