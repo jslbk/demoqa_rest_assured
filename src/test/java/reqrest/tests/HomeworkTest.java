@@ -60,9 +60,8 @@ public class HomeworkTest {
                 .then()
                 .spec(loginResponseSpec400)
                 .extract().as(RegistrationResponseModel.class));
-        step("Check response", () -> {
-            assertEquals("Note: Only defined users succeed registration", response.getError());
-        });
+        step("Check response", () ->
+            assertEquals("Note: Only defined users succeed registration", response.getError()));
     }
 
     @Test
@@ -81,9 +80,8 @@ public class HomeworkTest {
                 .then()
                 .spec(loginResponseSpec400)
                 .extract().as(RegistrationResponseModel.class));
-        step("Check response", () -> {
-            assertEquals("Missing email or username", response.getError());
-        });
+        step("Check response", () ->
+                assertEquals("Missing email or username", response.getError()));
     }
 
     @Test
@@ -102,9 +100,8 @@ public class HomeworkTest {
                 .then()
                 .spec(loginResponseSpec400)
                 .extract().as(RegistrationResponseModel.class));
-        step("Check response", () -> {
-            assertEquals("Missing password", response.getError());
-        });
+        step("Check response", () ->
+            assertEquals("Missing password", response.getError()));
     }
 
     @Test
