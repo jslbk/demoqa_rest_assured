@@ -15,7 +15,7 @@ build/
 ### Allure ###
 .allure
 config.json
-**/tpl/
+**/tpl
 
 ### Gradle ###
 .gradle
@@ -24,6 +24,3 @@ gradlew.bat
 
 ### Logs ###
 *.log
-
-### Resources ###
-*.ftl
