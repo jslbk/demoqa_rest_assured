@@ -11,20 +11,20 @@ import static io.restassured.filter.log.LogDetail.BODY;
 import static io.restassured.filter.log.LogDetail.STATUS;
 
 public class LoginSpecs {
-    public static RequestSpecification loginRequestSpec = with()
+    public static RequestSpecification basicRequestSpec = with()
             .filter(withCustomTemplates())
             .log().uri()
             .log().body()
             .log().headers()
             .contentType(ContentType.JSON);
 
-    public static ResponseSpecification loginResponseSpec200 = new ResponseSpecBuilder()
+    public static ResponseSpecification basicResponseSpec200 = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .log(STATUS)
             .log(BODY)
             .build();
 
-    public static ResponseSpecification loginResponseSpec400 = new ResponseSpecBuilder()
+    public static ResponseSpecification basicResponseSpec400 = new ResponseSpecBuilder()
             .expectStatusCode(400)
             .log(STATUS)
             .log(BODY)

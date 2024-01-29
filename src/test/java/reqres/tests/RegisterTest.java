@@ -1,10 +1,8 @@
 package reqres.tests;
 
-import io.restassured.RestAssured;
 import models.UserResponseModel;
-import models.login.LoginBodyModel;
+import models.registration.RegistrationBodyModel;
 import models.registration.RegistrationResponseModel;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -14,30 +12,23 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static specifications.LoginSpecs.*;
 
-public class HomeworkTest {
-
-
-    @BeforeAll
-    static void setUp() {
-        RestAssured.baseURI = "https://reqres.in";
-        RestAssured.basePath = "/api";
-    }
+public class RegisterTest extends TestBase {
 
     @Test
     @Tag("200")
     void testRegisterSuccessfulWithSteps() {
-        LoginBodyModel requestBody = new LoginBodyModel();
+        RegistrationBodyModel requestBody = new RegistrationBodyModel();
         requestBody.setEmail("eve.holt@reqres.in");
         requestBody.setPassword("pistol");
 
-        RegistrationResponseModel response = step("Make request", () -> given(loginRequestSpec)
+        RegistrationResponseModel response = step("Make request", () -> given(basicRequestSpec)
                 .body(requestBody)
 
                 .when()
                 .post("/register")
 
                 .then()
-                .spec(loginResponseSpec200)
+                .spec(basicResponseSpec200)
                 .body("token", notNullValue())
                 .extract().as(RegistrationResponseModel.class));
         step("Check response", () ->
@@ -47,38 +38,38 @@ public class HomeworkTest {
     @Test
     @Tag("400")
     void testRegisterBadEmail() {
-        LoginBodyModel requestBody = new LoginBodyModel();
+        RegistrationBodyModel requestBody = new RegistrationBodyModel();
         requestBody.setEmail("bad@reqres.in");
         requestBody.setPassword("pistol");
 
-        RegistrationResponseModel response = step("Make request", () -> given(loginRequestSpec)
+        RegistrationResponseModel response = step("Make request", () -> given(basicRequestSpec)
                 .body(requestBody)
 
                 .when()
                 .post("/register")
 
                 .then()
-                .spec(loginResponseSpec400)
+                .spec(basicResponseSpec400)
                 .extract().as(RegistrationResponseModel.class));
         step("Check response", () ->
-            assertEquals("Note: Only defined users succeed registration", response.getError()));
+                assertEquals("Note: Only defined users succeed registration", response.getError()));
     }
 
     @Test
     @Tag("400")
     void testRegisterEmptyEmail() {
-        LoginBodyModel requestBody = new LoginBodyModel();
+        RegistrationBodyModel requestBody = new RegistrationBodyModel();
         requestBody.setEmail("");
         requestBody.setPassword("pistol");
 
-        RegistrationResponseModel response = step("Make request", () -> given(loginRequestSpec)
+        RegistrationResponseModel response = step("Make request", () -> given(basicRequestSpec)
                 .body(requestBody)
 
                 .when()
                 .post("/register")
 
                 .then()
-                .spec(loginResponseSpec400)
+                .spec(basicResponseSpec400)
                 .extract().as(RegistrationResponseModel.class));
         step("Check response", () ->
                 assertEquals("Missing email or username", response.getError()));
@@ -87,27 +78,28 @@ public class HomeworkTest {
     @Test
     @Tag("400")
     void testRegisterEmptyPassword() {
-        LoginBodyModel requestBody = new LoginBodyModel();
+        RegistrationBodyModel requestBody = new RegistrationBodyModel();
         requestBody.setEmail("eve.holt@reqres.in");
         requestBody.setPassword("");
 
-        RegistrationResponseModel response = step("Make request", () -> given(loginRequestSpec)
+        RegistrationResponseModel response = step("Make request", () -> given(basicRequestSpec)
                 .body(requestBody)
 
                 .when()
                 .post("/register")
 
                 .then()
-                .spec(loginResponseSpec400)
+                .spec(basicResponseSpec400)
                 .extract().as(RegistrationResponseModel.class));
         step("Check response", () ->
-            assertEquals("Missing password", response.getError()));
+                assertEquals("Missing password", response.getError()));
     }
 
     @Test
     @Tag("404")
     void testSingleUserNotFound() {
-        step("Make request and check status", () -> given(loginRequestSpec)
+        step("Make request and check status", () -> given(basicRequestSpec)
+
                 .when()
                 .get("/users/23")
 
@@ -119,13 +111,13 @@ public class HomeworkTest {
     @Test
     @Tag("200")
     void testSingleUserEmail() {
-        UserResponseModel response = step("Make request", () -> given(loginRequestSpec)
+        UserResponseModel response = step("Make request", () -> given(basicRequestSpec)
 
                 .when()
                 .get("/users/4")
 
                 .then()
-                .spec(loginResponseSpec200)
+                .spec(basicResponseSpec200)
                 .extract().as(UserResponseModel.class));
         step("Check response", () -> {
             assertEquals("eve.holt@reqres.in", response.getData().getEmail());

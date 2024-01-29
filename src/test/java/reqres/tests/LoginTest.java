@@ -1,58 +1,55 @@
 package reqres.tests;
 
-import io.restassured.http.ContentType;
+import models.login.LoginBodyModel;
+import models.registration.RegistrationResponseModel;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static specifications.LoginSpecs.*;
 
-public class LoginTest {
-
+public class LoginTest extends TestBase {
 
     @Test
     @Tag("400")
     void testUserNotFound() {
-        String requestBody = "{\n" +
-                "    \"email\": \"bad.bad@reqres.in\",\n" +
-                "    \"password\": \"cityslicka\"\n" +
-                "}";
+        LoginBodyModel requestBody = new LoginBodyModel();
+        requestBody.setEmail("bad@reqres.in");
+        requestBody.setPassword("cityslicka");
 
-        given()
+        RegistrationResponseModel response = step("Make request", () -> given(basicRequestSpec)
                 .body(requestBody)
-                .contentType(ContentType.JSON)
-                .log().uri()
 
                 .when()
-                .post("https://reqres.in/api/login")
+                .post("/login")
 
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(400)
-                .body("error", is("user not found"));
+                .spec(basicResponseSpec400)
+                .extract().as(RegistrationResponseModel.class));
+        step("Check response", () ->
+                assertEquals("user not found", response.getError()));
     }
 
     @Test
     @Tag("200")
     void testLoginSuccessful() {
-        String requestBody = "{\n" +
-                "    \"email\": \"eve.holt@reqres.in\",\n" +
-                "    \"password\": \"cityslicka\"\n" +
-                "}";
+        LoginBodyModel requestBody = new LoginBodyModel();
+        requestBody.setEmail("eve.holt@reqres.in");
+        requestBody.setPassword("cityslicka");
 
-        given()
+        step("Make request", () -> given(basicRequestSpec)
                 .body(requestBody)
-                .contentType(ContentType.JSON)
-                .log().uri()
 
                 .when()
-                .post("https://reqres.in/api/login")
+                .post("/login")
 
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+                .spec(basicResponseSpec200)
+                .body("token", notNullValue())
+                .extract().as(RegistrationResponseModel.class));
     }
+
 }
