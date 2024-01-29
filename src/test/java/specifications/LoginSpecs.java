@@ -30,10 +30,4 @@ public class LoginSpecs {
             .log(BODY)
             .build();
 
-    public static ResponseSpecification loginResponseSpec404 = new ResponseSpecBuilder()
-            .expectStatusCode(404)
-            .log(STATUS)
-            .log(BODY)
-            .build();
-
 }

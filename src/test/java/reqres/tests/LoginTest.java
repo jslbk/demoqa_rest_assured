@@ -1,4 +1,4 @@
-package reqrest.tests;
+package reqres.tests;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Tag;

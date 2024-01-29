@@ -1,4 +1,4 @@
-package reqrest.tests;
+package reqres.tests;
 
 import io.restassured.RestAssured;
 import models.UserResponseModel;
@@ -112,7 +112,7 @@ public class HomeworkTest {
                 .get("/users/23")
 
                 .then()
-                .spec(loginResponseSpec404)
+                .statusCode(404)
                 .extract().as(UserResponseModel.class));
     }
 

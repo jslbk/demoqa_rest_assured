@@ -6,7 +6,7 @@ import models.support.SupportModel;
 @Data
 public class UserResponseModel {
 
-    private UserDataModel data;
+    private UserResponseDataModel data;
     private SupportModel support;
 
 }
