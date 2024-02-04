@@ -10,7 +10,7 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static specifications.LoginSpecs.*;
+import static specifications.ApiSpec.*;
 
 public class RegisterTest extends TestBase {
 
@@ -28,7 +28,7 @@ public class RegisterTest extends TestBase {
                 .post("/register")
 
                 .then()
-                .spec(basicResponseSpec200)
+                .spec(responseSpec200)
                 .body("token", notNullValue())
                 .extract().as(RegistrationResponseModel.class));
         step("Check response", () ->
@@ -49,7 +49,7 @@ public class RegisterTest extends TestBase {
                 .post("/register")
 
                 .then()
-                .spec(basicResponseSpec400)
+                .spec(responseSpec400)
                 .extract().as(RegistrationResponseModel.class));
         step("Check response", () ->
                 assertEquals("Note: Only defined users succeed registration", response.getError()));
@@ -69,7 +69,7 @@ public class RegisterTest extends TestBase {
                 .post("/register")
 
                 .then()
-                .spec(basicResponseSpec400)
+                .spec(responseSpec400)
                 .extract().as(RegistrationResponseModel.class));
         step("Check response", () ->
                 assertEquals("Missing email or username", response.getError()));
@@ -89,7 +89,7 @@ public class RegisterTest extends TestBase {
                 .post("/register")
 
                 .then()
-                .spec(basicResponseSpec400)
+                .spec(responseSpec400)
                 .extract().as(RegistrationResponseModel.class));
         step("Check response", () ->
                 assertEquals("Missing password", response.getError()));
@@ -117,7 +117,7 @@ public class RegisterTest extends TestBase {
                 .get("/users/4")
 
                 .then()
-                .spec(basicResponseSpec200)
+                .spec(responseSpec200)
                 .extract().as(UserResponseModel.class));
         step("Check response", () -> {
             assertEquals("eve.holt@reqres.in", response.getData().getEmail());

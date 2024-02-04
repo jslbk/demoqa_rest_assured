@@ -9,7 +9,7 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static specifications.LoginSpecs.*;
+import static specifications.ApiSpec.*;
 
 public class LoginTest extends TestBase {
 
@@ -27,7 +27,7 @@ public class LoginTest extends TestBase {
                 .post("/login")
 
                 .then()
-                .spec(basicResponseSpec400)
+                .spec(responseSpec400)
                 .extract().as(RegistrationResponseModel.class));
         step("Check response", () ->
                 assertEquals("user not found", response.getError()));
@@ -47,7 +47,7 @@ public class LoginTest extends TestBase {
                 .post("/login")
 
                 .then()
-                .spec(basicResponseSpec200)
+                .spec(responseSpec200)
                 .body("token", notNullValue())
                 .extract().as(RegistrationResponseModel.class));
     }
