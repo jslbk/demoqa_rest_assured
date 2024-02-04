@@ -1,9 +1,7 @@
 package demoqa.tests;
 
 import models.demoqa.CredentialsModel;
-import org.junit.jupiter.api.Tag;
 
-@Tag("demoqa_api")
 public class TestData {
 
     public static String login = "jtest",

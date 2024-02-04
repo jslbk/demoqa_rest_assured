@@ -15,7 +15,6 @@ import static demoqa.tests.TestData.login;
 import static demoqa.tests.TestData.password;
 import static io.restassured.RestAssured.given;
 
-@Tag("demoqa_api")
 public class LoginTest extends TestBase {
 
     @Test

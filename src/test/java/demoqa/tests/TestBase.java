@@ -13,8 +13,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.*;
-
-@Tag("demoqa_api")
 public class TestBase {
 
     AuthorizationApi authApi = new AuthorizationApi();
