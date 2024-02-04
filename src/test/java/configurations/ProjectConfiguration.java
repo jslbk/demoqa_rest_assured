@@ -16,8 +16,9 @@ public class ProjectConfiguration {
     }
 
     public void webConfig() {
-        Configuration.baseUrl = webConfig.baseUrl();
         RestAssured.baseURI = webConfig.baseUri();
+        Configuration.remote =  webConfig.remoteUrl().toString();
+        Configuration.baseUrl = webConfig.baseUrl();
         Configuration.browser = webConfig.browser().toString();
         Configuration.browserVersion = webConfig.browserVersion();
         Configuration.browserSize = webConfig.browserSize();
