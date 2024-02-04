@@ -2,6 +2,7 @@ package demoqa.tests;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 import reqres.tests.TestBase;
@@ -14,7 +15,7 @@ import static demoqa.tests.TestData.login;
 import static demoqa.tests.TestData.password;
 import static io.restassured.RestAssured.given;
 
-
+@Tag("demoqa_api")
 public class LoginTest extends TestBase {
 
     @Test

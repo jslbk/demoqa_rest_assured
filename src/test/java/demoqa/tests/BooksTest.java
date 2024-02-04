@@ -1,6 +1,7 @@
 package demoqa.tests;
 
 import models.demoqa.*;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 
@@ -18,6 +19,7 @@ import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Tag("demoqa_api")
 public class BooksTest extends TestBase {
     @Test
     void testAddBookToCollections() {

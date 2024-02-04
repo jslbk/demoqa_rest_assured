@@ -7,19 +7,17 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.Attachments;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.*;
 
+@Tag("demoqa_api")
 public class TestBase {
 
     AuthorizationApi authApi = new AuthorizationApi();
-    BooksApi booksApi = new BooksApi();
 
     @BeforeAll
     static void setup() {
