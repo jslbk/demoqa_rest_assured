@@ -5,8 +5,6 @@ import lombok.Data;
 @Data
 public class DeleteBooksRequestModel {
 
-    private String isbn;
-
-    private String userId;
+    private String isbn, userId;
 
 }

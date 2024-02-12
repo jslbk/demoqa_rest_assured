@@ -17,18 +17,18 @@ public class ProjectConfiguration {
 
     public void webConfig() {
         RestAssured.baseURI = webConfig.baseUri();
-        Configuration.remote =  webConfig.remoteUrl().toString();
+        Configuration.remote = webConfig.remoteUrl().toString();
         Configuration.baseUrl = webConfig.baseUrl();
-        Configuration.browser = webConfig.browser().toString();
+        Configuration.browser = webConfig.browser();
         Configuration.browserVersion = webConfig.browserVersion();
         Configuration.browserSize = webConfig.browserSize();
-        Configuration.pageLoadStrategy ="eager";
+        Configuration.pageLoadStrategy = "eager";
 
         if (webConfig.isRemote()) {
             Configuration.remote = String.valueOf(webConfig.remoteUrl());
             DesiredCapabilities capabilities = new DesiredCapabilities();
 
-            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+            capabilities.setCapability("selenoid:options", Map.of(
                     "enableVNC", true,
                     "enableVideo", true,
                     "env", Arrays.asList("LANG=ru_RU.UTF-8", "LANGUAGE=ru:ru", "LC_ALL=ru_RU.UTF=8")
