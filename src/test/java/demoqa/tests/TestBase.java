@@ -15,8 +15,8 @@ public class TestBase {
     private static final WebConfig webConfig = ConfigReader.Instance.read();
     AuthorizationApi authApi = new AuthorizationApi();
 
-    @BeforeAll
-    static void beforeAll() {
+    @BeforeEach
+    public void setUp() {
         ProjectConfiguration projectConfiguration = new ProjectConfiguration(webConfig);
         projectConfiguration.webConfig();
 
