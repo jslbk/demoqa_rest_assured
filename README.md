@@ -101,14 +101,6 @@ ____
 On the *Dashboard* in **Allure TestOps**, you can see the statistics of the number of tests: how many of them are added and executed manually, how many are automated. New tests and test run results are sent through the integration with each build.
 
 <p align="center">
-<img title="Allure TestOps DashBoard Graphs" src="media/AllureTestOpsDashboardGraphs.png">
-</p>
-
-<p align="center">
-<img title="Allure TestOps DashBoard" src="media/TestOpsDashboard.png">
-</p>
-
-<p align="center">
 <img title="Allure TestOps Cases" src="media/TestOpsCases.png">
 </p>
 
