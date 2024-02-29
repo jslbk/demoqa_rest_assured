@@ -121,7 +121,7 @@ ____
 After the build is complete, a **Telegram** bot automatically processes and sends a message with the test run report to a specifically configured chat.
 
 <p align="left">
-<img width="40%" title="Telegram Notifications" src="media/TelegramBot.jpg">
+<img width="40%" title="Telegram Notifications" src="media/TelegramBot.jpeg">
 </p>
 
 ____
