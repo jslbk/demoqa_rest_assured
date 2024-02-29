@@ -36,30 +36,18 @@ ____
 
 ____
 <a id="steps"></a>
-## :male_detective: Test steps
+## 🗒️ Test steps
 
-### API part:
+#### API part:
 
 - **Login to [Demo QA](https://demoqa.com/):** An automated login process to the Demo QA platform.
 - **Adding a Book via API:** Utilizing API requests to add a book to the system.
 
-### UI part:
+#### UI part:
 - **Deleting a Book via UI:** Deleting the previously added book through the web application's UI.
 - **Verification of Deletion:** Confirming the successful deletion of the book by verifying its absence from the list.
 
 ---
-
-### User Retrieval Tests
-
-#### 5. **Single User Not Found**
-- Verifies that attempting to retrieve a non-existent user returns a **404 status code**.
-
-#### 6. **Single User Email**
-- Validates that the email of a specific user can be retrieved successfully.
-- Checks the response **status code is 200** and compares the retrieved email.
-
----
-
 
 <a id="autotests"></a>
 ____
@@ -83,8 +71,6 @@ ____
 <a id="jenkins"></a>
 ## <img width="4%" title="Jenkins" src="media/Jenkins.svg"> </a> Jenkins Build <a target="_blank"> </a>
 
-> Registration on the [Jenkins](https://jenkins.autotests.cloud/) resource is required for access to Jenkins.
-
 To start the build, go to the "Build with parameters" section, select the necessary parameters, and click "Build".
 ### Jenkins Build Parameters:
 - TASK (set scope/task to execute)
@@ -94,6 +80,11 @@ To start the build, go to the "Build with parameters" section, select the necess
 <img title="Jenkins Build" src="media/JenkinsBuild.png">
 </p>
 After the build is completed, icons for "Allure Report" and "Allure TestOps" will appear next to the build number in the "Build History" section. Clicking on these icons opens pages with the generated HTML report and test documentation, respectively.
+
+<br>
+<br>
+
+> Registration on the [Jenkins](https://jenkins.autotests.cloud/) resource is required for access to Jenkins.
 
 ____
 <a id="allureReport"></a>
