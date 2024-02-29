@@ -54,7 +54,7 @@ ____
 ## :arrow_forward: Running Automated Tests
 
 1. Ensure you have the necessary dependencies installed.
-2. Update the base URI in the test file to match your Reqres.in API endpoint.
+2. Update the base URI in the test file to match your [Demo QA](https://demoqa.com/) API endpoint.
 3. Run the tests and observe the results.
 
 ### Running Tests from the Terminal
