@@ -1,8 +1,8 @@
 package api;
 
 import io.restassured.http.ContentType;
-import models.demoqa.CredentialsModel;
-import models.demoqa.LoginResponseModel;
+import models.CredentialsModel;
+import models.LoginResponseModel;
 
 import static io.restassured.RestAssured.given;
 import static specifications.ApiSpec.responseSpec200;

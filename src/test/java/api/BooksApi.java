@@ -1,7 +1,7 @@
 package api;
 
-import models.demoqa.AddBooksModel;
-import models.demoqa.DeleteBooksRequestModel;
+import models.AddBooksModel;
+import models.DeleteBooksRequestModel;
 
 import static io.restassured.RestAssured.given;
 import static specifications.ApiSpec.*;

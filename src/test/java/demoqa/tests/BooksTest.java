@@ -1,6 +1,10 @@
 package demoqa.tests;
 
-import models.demoqa.*;
+import models.AddBooksModel;
+import models.DeleteBooksRequestModel;
+import models.IsbnModel;
+import models.LoginResponseModel;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
@@ -20,8 +24,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Tag("demoqa_api")
+@DisplayName("Book collection tests")
 public class BooksTest extends TestBase {
     @Test
+    @DisplayName("Book can be added and deleted from the user's collection")
     void testAddBookToCollections() {
         LoginResponseModel loginResponse = authApi.login(credentials);
 
