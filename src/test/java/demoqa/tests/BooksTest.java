@@ -1,5 +1,6 @@
 package demoqa.tests;
 
+import io.qameta.allure.*;
 import models.AddBooksModel;
 import models.DeleteBooksRequestModel;
 import models.IsbnModel;
@@ -23,8 +24,13 @@ import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Tag("demoqa_api")
 @DisplayName("Book collection tests")
+@Feature("Book Collection Management")
+@Epic("User Management")
+@Story("As a user, I want to manage my book collection")
+@Owner("Julyan Slabko")
+@Tag("demoqa_api")
+@Severity(SeverityLevel.NORMAL)
 public class BooksTest extends TestBase {
     @Test
     @DisplayName("Book can be added and deleted from the user's collection")
@@ -46,7 +52,6 @@ public class BooksTest extends TestBase {
             addNewBook(loginResponse.getToken(), addNewBook);
         });
         step("Check user is logged in and add new book via UI", () -> {
-
             open("/favicon.ico");
             getWebDriver().manage().addCookie(new Cookie("userID", loginResponse.getUserId()));
             getWebDriver().manage().addCookie(new Cookie("expires", loginResponse.getExpires()));

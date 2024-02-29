@@ -1,7 +1,9 @@
 package demoqa.tests;
 
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
+import io.qameta.allure.*;
+import models.LoginResponseModel;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 
@@ -9,13 +11,21 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static demoqa.tests.TestData.login;
-import static demoqa.tests.TestData.password;
-import static io.restassured.RestAssured.given;
+import static demoqa.tests.TestData.*;
+import static io.qameta.allure.Allure.step;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("Successful login tests")
+@Feature("User login")
+@Epic("Login")
+@Story("User is able to login into the book store")
+@Owner("Julyan Slabko")
+@Tag("demoqa_api")
+@Severity(SeverityLevel.NORMAL)
 public class LoginTest extends TestBase {
 
     @Test
+    @DisplayName("User is successfully logged in through the UI test")
     void testUiLoginSuccessful() {
         open("/login");
         if ($(".fc-dialog-container").isDisplayed()) {
@@ -27,33 +37,18 @@ public class LoginTest extends TestBase {
     }
 
     @Test
+    @DisplayName("User is successfully logged in through the API test")
     void testLoginSuccessful() {
-        String authData = "{\"userName\": \"jtest\", \"password\": \"jTest-1234%\"}";
+        LoginResponseModel authData = authApi.login(credentials);
 
-        Response authResponse = given()
-                .log().uri()
-                .log().method()
-                .log().body()
-                .contentType(ContentType.JSON)
-                .body(authData)
+        step("Check user is logged in and add new book via UI", () -> {
+            open("/favicon.ico");
+            getWebDriver().manage().addCookie(new Cookie("userID", authData.getUserId()));
+            getWebDriver().manage().addCookie(new Cookie("expires", authData.getExpires()));
+            getWebDriver().manage().addCookie(new Cookie("token", authData.getToken()));
 
-                .when()
-                .post("/Account/v1/Login")
-
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
-                .extract().response();
-
-        open("/favicon.ico");
-
-        getWebDriver().manage().addCookie(new Cookie("userID", authResponse.path("userId")));
-        getWebDriver().manage().addCookie(new Cookie("expires", authResponse.path("expires")));
-        getWebDriver().manage().addCookie(new Cookie("token", authResponse.path("token")));
-
-        open("/profile");
-        $("#userName-value").shouldHave(text(login));
+            open("/profile");
+            assertEquals(credentials.getUserName(), $("#userName-value").getText());
+        });
     }
-
 }

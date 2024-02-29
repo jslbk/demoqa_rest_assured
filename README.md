@@ -1,6 +1,6 @@
-# Demo automation test project of the [Reqres.in](https://reqres.in/) API endpoints via [Rest-assured](https://www.browserstack.com/)
+# Demo automation test project of the [Demo QA](https://demoqa.com/) API endpoints via [Rest-assured](https://www.browserstack.com/)
 
-<img alt="Reqres" src="media/Reqres.jpeg" width="40%">
+<img alt="Demo QA" src="media/demoqa.png" width="40%">
 
 ## Content
 
