@@ -116,7 +116,7 @@ Integration with **Allure TestOps** and **Jira** is implemented. In the Jira tas
 
 ____
 <a id="telegram"></a>
-## <img width="4%" style="vertical-align:bottom" title="Telegram" src="media/Telegram.svg"> Automatically generated report notification in <a target="_blank" href="https://telegram.org/"> Telegram </a> via Bot
+## <img width="4%" style="vertical-align:bottom" title="Telegram" src="media/Telegram.svg"> Report notification in <a target="_blank" href="https://telegram.org/"> Telegram </a> via Bot
 
 After the build is complete, a **Telegram** bot automatically processes and sends a message with the test run report to a specifically configured chat.
 
