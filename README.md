@@ -1,6 +1,6 @@
 # Demo test of the interaction between API and UI automation
 
-<img alt="Demo QA" src="media/demoqa.png" width="100%">
+<img alt="Demo QA" src="media/demoqa.png" width="50%">
 
 
 Illustrative example of the interaction between API and UI automation, showcasing the capabilities of testing automation across different levels of the application.
