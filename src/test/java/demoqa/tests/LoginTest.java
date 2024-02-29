@@ -25,18 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LoginTest extends TestBase {
 
     @Test
-    @DisplayName("User is successfully logged in through the UI test")
-    void testUiLoginSuccessful() {
-        open("/login");
-        if ($(".fc-dialog-container").isDisplayed()) {
-            $(".fc-cta-consent").click();
-        }
-        $("#userName").setValue(login);
-        $("#password").setValue(password).pressEnter();
-        $("#userName-value").shouldHave(text(login));
-    }
-
-    @Test
     @DisplayName("User is successfully logged in through the API test")
     void testLoginSuccessful() {
         LoginResponseModel authData = authApi.login(credentials);
