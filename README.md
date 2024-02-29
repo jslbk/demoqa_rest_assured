@@ -1,11 +1,14 @@
-# Demo automation test project of the [Demo QA](https://demoqa.com/) API endpoints via [Rest-assured](https://www.browserstack.com/)
+# Demo test of the interaction between API and UI automation
 
-<img alt="Demo QA" src="media/demoqa.png" width="40%">
+<img alt="Demo QA" src="media/demoqa.png" width="100%">
+
+
+Illustrative example of the interaction between API and UI automation, showcasing the capabilities of testing automation across different levels of the application.
 
 ## Content
 
 - <a href="#tools"> Tools</a>
-- <a href="#cases"> Test Cases</a>
+- <a href="#steps"> Steps</a>
 - <a href="#autotests"> Running Automated Tests</a>
 - <a href="#jenkins"> Jenkins Build</a>
 - <a href="#allureReport"> Example of Allure Report</a>
@@ -32,37 +35,17 @@ ____
 </p>
 
 ____
-This repository contains a set of Java tests using the [REST Assured](https://rest-assured.io) library for various endpoints of the [Reqres.in](https://reqres.in/) API. The tests cover registration scenarios as well as user retrieval scenarios.
+<a id="steps"></a>
+## :male_detective: Test steps
 
+### API part:
 
-The contents of the Allure report for each test case include:
-- Test steps and the results of their execution
-- Screenshot of the page at the last step (to visually analyze why the test failed)
-- Page Source (ability to open the page source in a new tab and see the reason for the test failure)
-- Browser console logs
-- Video (screen recording from Selenoid) of the test automation execution.
+- **Login to [Demo QA](https://demoqa.com/):** An automated login process to the Demo QA platform.
+- **Adding a Book via API:** Utilizing API requests to add a book to the system.
 
-____
-<a id="cases"></a>
-## :male_detective: Test Cases
-
-### Registration Tests:
-
-#### 1. Successful Registration
-- Validates that a user can successfully register with a valid email and password.
-- Checks the response **status code is 200**, user ID, and token value in not null.
-
-#### 2. Invalid Email Registration
-- Verifies that registration fails with an invalid email.
-- Ensures the response **status code is 400** and checks the expected error message.
-
-#### 3. Empty Email Registration
-- Tests the case where registration fails with an empty email.
-- Ensures the response **status code is 400** and checks the expected error message.
-
-#### 4. Empty Password Registration
-- Tests the case where registration fails with an empty password.
-- Ensures the response **status code is 400** and checks the expected error message.
+### UI part:
+- **Deleting a Book via UI:** Deleting the previously added book through the web application's UI.
+- **Verification of Deletion:** Confirming the successful deletion of the book by verifying its absence from the list.
 
 ---
 
@@ -93,14 +76,14 @@ ____
 <em> To run <b>all</b> the tests: </em>
 
 ```
-gradle clean test 
+gradle clean demoqa_api
 ```
 
 ____
 <a id="jenkins"></a>
 ## <img width="4%" title="Jenkins" src="media/Jenkins.svg"> </a> Jenkins Build <a target="_blank"> </a>
 
-Registration on the [Jenkins](https://jenkins.autotests.cloud/) resource is required for access to Jenkins.
+> Registration on the [Jenkins](https://jenkins.autotests.cloud/) resource is required for access to Jenkins.
 
 To start the build, go to the "Build with parameters" section, select the necessary parameters, and click "Build".
 ### Jenkins Build Parameters:
@@ -160,7 +143,7 @@ After the build is complete, a **Telegram** bot automatically processes and send
 
 ____
 <a id="video"></a>
-## <img width="4%" style="vertical-align:bottom" title="Selenoid" src="media/Selenoid.svg"> </a> Video attachment example
+## <img width="4%" style="vertical-align:bottom" title="Selenoid" src="media/Selenoid.svg"> </a> Video attachment example (UI part only)
 
 In the Allure reports for each test, a video of the test execution is attached along with a screenshot.
 
