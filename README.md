@@ -32,7 +32,7 @@ ____
 </p>
 
 ____
-This repository contains a set of Java tests using the [RestAssured](https://rest-assured.io) library for various endpoints of the [Reqres.in](https://reqres.in/) API. The tests cover registration scenarios as well as user retrieval scenarios.
+This repository contains a set of Java tests using the [REST Assured](https://rest-assured.io) library for various endpoints of the [Reqres.in](https://reqres.in/) API. The tests cover registration scenarios as well as user retrieval scenarios.
 
 
 The contents of the Allure report for each test case include:
