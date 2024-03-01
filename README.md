@@ -1,4 +1,4 @@
-# Demo project with optimized UI Test vy API-Prepared Authentication
+# Demo project with optimized UI Test by API-Prepared Authentication
 
 <img alt="Demo QA" src="media/demoqa.png" width="50%">
 
