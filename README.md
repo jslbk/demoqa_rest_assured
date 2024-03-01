@@ -1,4 +1,4 @@
-# Demo test of the interaction between API and UI automation
+# Demo project with optimized UI Test vy API-Prepared Authentication
 
 <img alt="Demo QA" src="media/demoqa.png" width="50%">
 
